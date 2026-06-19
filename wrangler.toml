@@ -100,7 +100,7 @@ crons = ["0 3 * * *"]
 
 [[d1_databases]]
 binding = "vault1"
-database_name = "vault1"
+database_name = "${D1_DATABASE_NAME}"
 database_id = "${D1_DATABASE_ID}"
 migrations_dir = "migrations"
 
@@ -108,15 +108,15 @@ migrations_dir = "migrations"
 # R2 has priority: if R2 is configured, KV is ignored.
 # R2 supports larger files and streaming uploads.
 # Uncomment and configure this section to enable file attachments via R2:
-# [[r2_buckets]]
-# binding = "ATTACHMENTS_BUCKET"
-# bucket_name = "warden-attachments"
+[[r2_buckets]]
+binding = "ATTACHMENTS_BUCKET"
+bucket_name = "${R2_BUCKET_NAME}"
 
 # KV namespace for file attachments (optional, no credit card required)
 # KV has a 25MB limit per file, but doesn't require credit card binding.
 # If R2 is not configured, KV will be used for attachments.
 [[kv_namespaces]]
-binding = "ATTACHMENTS_KV"
+binding = "${KV_NAMESPACE}"
 
 [env.dev]
 name = "warden-worker-dev"
